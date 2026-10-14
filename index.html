@@ -1,0 +1,30 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<title>Matsema has moved</title>
+<link rel="canonical" href="https://platforms.mendgroup.co.za/matsema/">
+<meta http-equiv="refresh" content="0; url=https://platforms.mendgroup.co.za/matsema/">
+<style>body{font:16px/1.6 system-ui,sans-serif;margin:0;padding:12vh 24px;background:#faf8f5;color:#222;max-width:34rem;margin-inline:auto}a{color:#1F3A63}</style>
+<h1 style="font-size:1.35rem">Matsema now lives here</h1>
+<p>All three platforms and the verification desk are served from one address, so a document you have verified once counts on every one of them. That only works if they share an origin, and separate subdomains do not.</p>
+<p><a href="https://platforms.mendgroup.co.za/matsema/">https://platforms.mendgroup.co.za/matsema/</a></p>
+<script>
+(function () {
+  var go = function () { location.replace('https://platforms.mendgroup.co.za/matsema/' + location.hash); };
+  var jobs = [];
+  try {
+    if (navigator.serviceWorker && navigator.serviceWorker.getRegistrations) {
+      jobs.push(navigator.serviceWorker.getRegistrations().then(function (rs) {
+        return Promise.all(rs.map(function (r) { return r.unregister(); }));
+      }));
+    }
+    if (window.caches && caches.keys) {
+      jobs.push(caches.keys().then(function (ks) {
+        return Promise.all(ks.map(function (k) { return caches.delete(k); }));
+      }));
+    }
+  } catch (e) {}
+  Promise.all(jobs).then(go, go);
+  setTimeout(go, 2500);
+}());
+</script>
